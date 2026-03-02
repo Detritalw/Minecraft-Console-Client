@@ -132,7 +132,7 @@ namespace MinecraftClient.Mapping
         Vindicator,
         WanderingTrader,
         Warden,
-        WindCharge,
+        BreezeWindCharge,
         Witch,
         Wither,
         WitherSkeleton,
