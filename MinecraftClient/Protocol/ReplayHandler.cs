@@ -239,8 +239,12 @@ namespace MinecraftClient.Protocol
             // format: timestamp + packetLength + RawPacket
             List<byte> line = new();
             int nowTime = Convert.ToInt32((lastPacketTime - recordStartTime).TotalMilliseconds);
-            line.AddRange(BitConverter.GetBytes((Int32)nowTime).Reverse().ToArray());
-            line.AddRange(BitConverter.GetBytes((Int32)rawPacket.Count).Reverse().ToArray());
+            byte[] nowTimeBytes = BitConverter.GetBytes((Int32)nowTime);
+            Array.Reverse(nowTimeBytes);
+            line.AddRange(nowTimeBytes);
+            byte[] rawPacketCountBytes = BitConverter.GetBytes((Int32)rawPacket.Count);
+            Array.Reverse(rawPacketCountBytes);
+            line.AddRange(rawPacketCountBytes);
             line.AddRange(rawPacket.ToArray());
             // Write out to the file
             recordStream!.Write(line.ToArray(), 0, line.Count);
