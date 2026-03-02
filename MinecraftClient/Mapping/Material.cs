@@ -1,4 +1,4 @@
-﻿namespace MinecraftClient.Mapping
+namespace MinecraftClient.Mapping
 {
     /// <summary>
     /// Represents Minecraft Materials
@@ -443,6 +443,7 @@
         Grindstone,
         HangingRoots,
         HayBlock,
+        HeavyCore,
         HeavyWeightedPressurePlate,
         HoneyBlock,
         HoneycombBlock,

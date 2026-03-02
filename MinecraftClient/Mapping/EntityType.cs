@@ -1,4 +1,4 @@
-﻿namespace MinecraftClient.Mapping
+namespace MinecraftClient.Mapping
 {
     /// <summary>
     /// Represents Minecraft Entity Types
@@ -18,12 +18,14 @@
         AreaEffectCloud,
         ArmorStand,
         Arrow,
+        Armadillo,
         Axolotl,
         Bat,
         Bee,
         Blaze,
         BlockDisplay,
         Boat,
+        Bogged,
         Breeze,
         Camel,
         Cat,
@@ -84,6 +86,7 @@
         Mooshroom,
         Mule,
         Ocelot,
+        OminousItemSpawner,
         Painting,
         Panda,
         Parrot,
@@ -134,6 +137,7 @@
         Wither,
         WitherSkeleton,
         WitherSkull,
+        WindCharge,
         Wolf,
         Zoglin,
         Zombie,
