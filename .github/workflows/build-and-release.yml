@@ -72,12 +72,13 @@ jobs:
       run: |
         mv ${{ env.built-executable-path }} ${{ env.PROJECT }}-${{ env.build-version-info }}-${{ matrix.target }}${{ (startsWith(matrix.target, 'win') && '.exe') || ' ' }}
 
-    - name: Wait
-      # We wait before creating a release because we might run into a race condition
-      # while creating a new tag (as opposed to using the existing tag, if any) since we're running builds in parallel.
-      run: |
-        sleep 5s
-    
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.PROJECT }}-${{ env.build-version-info }}-${{ matrix.target }}
+        path: ${{ env.PROJECT }}-${{ env.build-version-info }}-${{ matrix.target }}${{ (startsWith(matrix.target, 'win') && '.exe') || ' ' }}
+        retention-days: 30
+
     - name: Create Release
       uses: ncipollo/release-action@v1.14.0
       with:
