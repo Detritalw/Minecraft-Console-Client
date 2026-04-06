@@ -72,6 +72,7 @@ namespace MinecraftClient.Protocol.Handlers
         internal const int MC_1_20_2_Version = 764;
         internal const int MC_1_20_4_Version = 765;
         internal const int MC_1_21_8_Version = 770;
+        internal const int MC_1_21_9_Version = 772;
 
         private int compression_treshold = -1;
         private int autocomplete_transaction_id = 0;
@@ -146,8 +147,9 @@ namespace MinecraftClient.Protocol.Handlers
             Block.Palette = protocolVersion switch
             {
                 // Block palette
-                > MC_1_21_8_Version when handler.GetTerrainEnabled() =>
+                > MC_1_21_9_Version when handler.GetTerrainEnabled() =>
                     throw new NotImplementedException(Translations.exception_palette_block),
+                >= MC_1_21_9_Version => new Palette1218(),
                 >= MC_1_21_8_Version => new Palette1218(),
                 >= MC_1_20_4_Version => new Palette1204(),
                 >= MC_1_20_Version => new Palette120(),
@@ -165,8 +167,9 @@ namespace MinecraftClient.Protocol.Handlers
             entityPalette = protocolVersion switch
             {
                 // Entity palette
-                > MC_1_21_8_Version when handler.GetEntityHandlingEnabled() =>
+                > MC_1_21_9_Version when handler.GetEntityHandlingEnabled() =>
                     throw new NotImplementedException(Translations.exception_palette_entity),
+                >= MC_1_21_9_Version => new EntityPalette1218(),
                 >= MC_1_21_8_Version => new EntityPalette1218(),
                 >= MC_1_20_4_Version => new EntityPalette1204(),
                 >= MC_1_20_Version => new EntityPalette120(),
@@ -188,8 +191,9 @@ namespace MinecraftClient.Protocol.Handlers
             itemPalette = protocolVersion switch
             {
                 // Item palette
-                > MC_1_21_8_Version when handler.GetInventoryEnabled() =>
+                > MC_1_21_9_Version when handler.GetInventoryEnabled() =>
                     throw new NotImplementedException(Translations.exception_palette_item),
+                >= MC_1_21_9_Version => new ItemPalette1218(),
                 >= MC_1_21_8_Version => new ItemPalette1218(),
                 >= MC_1_20_4_Version => new ItemPalette1204(),
                 >= MC_1_20_Version => new ItemPalette120(),

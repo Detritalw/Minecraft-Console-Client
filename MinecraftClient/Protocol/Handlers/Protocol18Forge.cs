@@ -241,6 +241,18 @@ namespace MinecraftClient.Protocol.Handlers
         /// <returns>TRUE/FALSE depending on whether the packet was understood or not</returns>
         public bool HandleLoginPluginRequest(string channel, Queue<byte> packetData, ref List<byte> responseData)
         {
+            // Velocity Modern Forwarding support
+            // Velocity sends this during login to verify the client supports player info forwarding
+            // https://docs.papermc.io/velocity/developer/api-cookbook/player-info-forwarding
+            if (channel == "velocity:player_info")
+            {
+                // Velocity expects us to respond with the same data it sent us
+                // This indicates that the client supports Velocity's player info forwarding
+                byte[] receivedData = packetData.ToArray();
+                responseData.AddRange(receivedData);
+                return true;
+            }
+
             if (ForgeEnabled() && (forgeInfo!.Version == FMLVersion.FML2 || forgeInfo!.Version == FMLVersion.FML3) && channel == "fml:loginwrapper")
             {
                 // Forge Handshake handler source code used to implement the FML2 packets:
